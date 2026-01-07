@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  bot:
+    build: .
+    restart: always
+    volumes:
+      # Зв'язуємо базу даних, щоб вона зберігалася поза контейнером
+      - ./database.db:/app/database.db
+    environment:
+      # Тут можна було б передавати токен, але ми вже використовуємо config.py
+      - TZ=Europe/Kyiv
