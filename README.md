@@ -41,16 +41,13 @@ git clone [https://github.com/hatsker21/blackout_bot.git](https://github.com/hat
 cd blackout_bot
 Install dependencies:
 
-
 pip install -r requirements.txt
 Configuration: Create a .env file (refer to config.py) and add your BOT_TOKEN.
 
 Run tests (Recommended):
 
-
 python -m pytest tests/test_full_suite.py
 Start the bot:
-
 
 python main.py
 2. Docker Deployment (Recommended for Servers)
