@@ -1,7 +1,3 @@
-Ярославе, твій текст уже виглядає дуже зріло. Ти правильно структурував розділи, але за «канонами ІТ» професійний README.md — це не просто опис, а інструкція, яка дозволяє іншому розробнику розгорнути проект за 5 хвилин без зайвих питань.
-
-Ось професійний переклад англійською з моїми виправленнями (що я додав/змінив згідно з правилами індустрії).
-
 🛡️ Blackout Bot: Outage Schedule Monitoring System
 A professional Telegram bot designed to automate tracking and notifying users about scheduled power outages. The system integrates web scraping of official power utility resources, data visualization, and a premium subscription model.
 
@@ -35,7 +31,6 @@ Testing: pytest & pytest-asyncio
 📂 Project Structure
 The project follows a modular architecture to ensure maintainability:
 
-Plaintext
 
 ├── main.py              # Entry point: initializes bot and scheduler
 ├── bot.py               # Command handlers and message logic
@@ -52,7 +47,7 @@ Plaintext
 ⚙️ Setup & Installation
 1. Local Deployment
 Clone the repository:
-Bash
+
 
 git clone https://github.com/yourusername/blackout-bot.git
 cd blackout-bot
@@ -64,16 +59,16 @@ Configuration: Create a .env file (refer to config.py) and add your BOT_TOKEN.
 
 Run tests (Recommended):
 
-Bash
+
 
 python -m pytest tests/test_full_suite.py
 Start the bot:
 
-Bash
+
 
 python main.py
 2. Docker Deployment (Recommended for Servers)
-Bash
+
 
 docker-compose up -d --build
 📊 Database Schema
