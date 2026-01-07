@@ -49,7 +49,7 @@ The project follows a modular architecture to ensure maintainability:
 Clone the repository:
 
 
-git clone https://github.com/yourusername/blackout-bot.git
+git clone https://github.com/hatsker21/blackout_bot.git
 cd blackout-bot
 Install dependencies:
 
@@ -76,7 +76,7 @@ The system uses a relational model optimized for the Third Normal Form (3NF). Th
 
 
 user_id: Unique Telegram identifier (Primary Key). 
-+1
+
 
 is_premium: Subscription status (Boolean 0/1).
 
