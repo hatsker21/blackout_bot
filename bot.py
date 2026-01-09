@@ -49,7 +49,6 @@ def get_main_keyboard():
 async def cmd_db_fix(message: types.Message):
     if message.from_user.id != ADMIN_ID: return
     try:
-        # Викликаємо новий метод, який ми додали в Database
         result = await db.fix_database_schema()
         if result == "exists":
             await message.answer("ℹ️ Колонка `premium_until` вже існує.")
@@ -89,7 +88,6 @@ async def cmd_broadcast(message: types.Message, bot: Bot):
         except: continue
     await message.answer(f"✅ Надіслано: {count}")
 
-# ПРАВИЛЬНЕ РОЗМІЩЕННЯ КОМАНДИ ГРАНТ
 @router.message(Command("grant_premium"))
 async def cmd_grant(message: types.Message, bot: Bot):
     """Ручна активація Premium для користувача за його ID."""
@@ -199,7 +197,6 @@ async def view_profile_logic(event):
     
     if is_p:
         status_str = "💎 Premium"
-        # Читаємо поле, яке ти додав у database.py
         until = user.get('premium_until', 'невизначено')
         expiry_str = f"\n📅 Діє до: `{until}`"
     else:
@@ -265,11 +262,9 @@ async def set_time_handler(callback: types.CallbackQuery):
 async def toggle_return_handler(callback: types.CallbackQuery):
     """Вмикає або вимикає сповіщення про повернення світла за 15 хв."""
     user = await db.get_user(callback.from_user.id)
-    # Змінюємо 1 на 0 або 0 на 1
     new_val = 0 if user['notify_return'] else 1
     await db.update_user_setting(callback.from_user.id, "notify_return", new_val)
     
-    # Оновлюємо меню для відображення змін
     await premium_settings(callback)
 
 # --- ПОШУК ТА СЕРВІС ---

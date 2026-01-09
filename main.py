@@ -34,7 +34,7 @@ async def check_upd(bot_instance: Bot):
     після успішного звернення до сайту.
     """
     logging.info("⏳ Запуск планової перевірки оновлень...")
-    data = scraper.get_latest_schedule() # Або scraper.get_all_queues() залежно від твого модуля
+    data = scraper.get_latest_schedule()
     
     if data == "EMERGENCY_MODE":
         logging.warning("⚠️ УВАГА: Введено графіки аварійних відключень (ГАВ)!")
@@ -44,7 +44,6 @@ async def check_upd(bot_instance: Bot):
         logging.error("❌ Не вдалося отримати дані з сайту Обленерго.")
         return
 
-    # --- ФІКС ЧАСУ (Психологія користувача) ---
     # Оновлюємо час останньої перевірки ВЖЕ ЗАРАЗ, бо ми успішно отримали дані.
     now_str = datetime.now().strftime("%H:%M %d.%m")
     await bot.db.set_last_update(now_str)
@@ -135,6 +134,10 @@ async def main():
     )
     
     await bot.db.setup()
+
+    if not config.BOT_TOKEN:
+        logging.critical("❌ КРИТИЧНА ПОМИЛКА: BOT_TOKEN не знайдено в .env!")
+        return
     bot_obj = Bot(token=config.BOT_TOKEN)
     dp = Dispatcher()
     dp.include_router(bot.router)

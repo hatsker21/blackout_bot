@@ -10,7 +10,6 @@ def get_font(size):
     # Переходимо на рівень вище, в корінь проекту
     project_root = os.path.dirname(current_dir)
     
-    # Складаємо шлях до шрифту в корені (де лежить main.py та arial.ttf)
     font_path = os.path.join(project_root, "arial.ttf")
     
     if os.path.exists(font_path):
@@ -32,10 +31,10 @@ def generate_schedule_image(queue_id, schedule_str):
     bar_w, bar_h = 980, 140
     
     COLOR_BG = (255, 255, 255)
-    COLOR_POWER = (76, 175, 80)     # Зелений
-    COLOR_BLACKOUT = (244, 67, 54)  # Червоний
-    COLOR_GRID = (180, 180, 180)    # Сітка
-    COLOR_NOW = (33, 150, 243)      # Синя стрілка
+    COLOR_POWER = (76, 175, 80)    
+    COLOR_BLACKOUT = (244, 67, 54) 
+    COLOR_GRID = (180, 180, 180)    
+    COLOR_NOW = (33, 150, 243)      
 
     img = Image.new('RGB', (W, H), color=COLOR_BG)
     draw = ImageDraw.Draw(img)
@@ -85,12 +84,9 @@ def generate_schedule_image(queue_id, schedule_str):
     now = datetime.now()
     current_float_h = now.hour + now.minute/60
     x_now = bar_x + (current_float_h * (bar_w / 24))
-    
-    # Синя лінія через весь графік
+
     draw.line([x_now, bar_y - 30, x_now, bar_y + bar_h + 15], fill=COLOR_NOW, width=4)
-    # Трикутник зверху
     draw.polygon([x_now-12, bar_y-45, x_now+12, bar_y-45, x_now, bar_y-30], fill=COLOR_NOW)
-    # Текст "ЗАРАЗ"
     draw.text((x_now - 35, bar_y - 75), "ЗАРАЗ", fill=COLOR_NOW, font=font_hours)
 
     # 5. ЛЕГЕНДА

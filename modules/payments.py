@@ -1,10 +1,10 @@
 import requests
 import time
 import logging
+import config  
 
-MONO_TOKEN = "ui18988NC2nlNKLATHjwRQJ_c41J9_uFARIhYCx3y2RI"
-# Тимчасово використовуємо ID вашої Чорної картки для тестів
-ACCOUNT_ID = "lX67F4ceh4TbgRcpzsXRAA" 
+MONO_TOKEN = config.MONO_TOKEN
+ACCOUNT_ID = config.MONO_ACCOUNT_ID
 
 async def check_monobank_payments(bot, db):
     """Перевіряє транзакції по картці за останні 10 хвилин"""
@@ -27,7 +27,7 @@ async def check_monobank_payments(bot, db):
             
             comment = tx.get('comment', '').strip()
             
-            # Перевіряємо, чи є в коментарі ваш ID: 1052766611
+            # Перевіряємо, чи є в коментарі ваш ID
             if comment.isdigit():
                 user_id = int(comment)
                 days = 0
